@@ -1,7 +1,5 @@
 import {
     createConnection,
-    IPCMessageReader,
-    IPCMessageWriter,
     TextDocumentSyncKind,
     RequestType,
     TextDocumentPositionParams,
@@ -24,10 +22,7 @@ namespace TagCloseRequest {
 }
 
 export function startServer() {
-    const connection = createConnection(
-        new IPCMessageReader(process),
-        new IPCMessageWriter(process),
-    );
+    const connection = createConnection();
 
     const manager = new DocumentManager(
         textDocument => new SvelteDocument(textDocument.uri, textDocument.text),
